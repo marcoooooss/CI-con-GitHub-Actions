@@ -11,17 +11,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 1. Descargar el código del repositorio
+      - name: Checkout del repositorio
         uses: actions/checkout@v4
 
-      - name: 2. Configurar Node.js
+      - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
-      - name: 3. Instalar dependencias
-        run: npm install
+      - name: Instalar dependencias
+        run: npm ci
 
-      - name: 4. Ejecutar empaquetado y comprobación
+      - name: Ejecutar Linter
+        run: npm run lint
+
+      - name: Compilar proyecto
         run: npm run build
